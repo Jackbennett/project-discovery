@@ -2,30 +2,38 @@ const http = require('http')
 const querystring = require('querystring');
 const os = require('os')
 
-function up(status){
+function up(hostname,
+            port = 80){
+
+  // Create the address of the project to advertise
+  var advertisePort = parseInt(process.env.PORT || 3000)
+  var prefix = advertisePort === 443 ? 'https://' : 'http://'
   var postData = querystring.stringify({
-    'url' : os.hostname().toString() + ':' + 3000,
-    'online': status
+    'url' : `${prefix}${os.hostname().toString()}:${advertisePort.toString()}`
+      .replace(/:80$|:443$/,''),
+    'online': true
   });
 
   var options = {
-    hostname: 'itspc02',
-    port: 3000,
     path: '/announce',
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Content-Length': postData.length
     }
-  };
+  }
+  options.hostname = hostname
+  options.port = port
 
   var req = http.request(options, (res) => {
     console.log(`STATUS: ${res.statusCode}`);
     console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
+
     res.on('data', (chunk) => {
       console.log(`BODY: ${chunk}`);
     });
+
     res.on('end', () => {
       console.log('No more data in response.')
     })
@@ -42,4 +50,4 @@ function up(status){
 
 function down(){}
 
-module.exports = {announce, close}
+module.exports = {up, down}

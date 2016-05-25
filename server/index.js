@@ -13,11 +13,11 @@ app.use(bodyParser.urlencoded({
 
 app.post('/announce', function(req,res){
   if (!req.body) return res.sendStatus(400)
-  console.log('announced connection')
+  console.log(`Project announced from: ${req.body.url}`)
   console.log(req.body)
 })
 
 app.listen(port, function(){
   console.log(`Listening on ${os.hostname()}:${port}`)
-  announce.up(true)
+  announce.up(os.hostname(), port)
 })
