@@ -3,7 +3,8 @@ const querystring = require('querystring');
 const os = require('os')
 
 function up(hostname,
-            port = 80){
+            port = 80,
+            name = os.hostname()){
 
   // Create the address of the project to advertise
   var advertisePort = parseInt(process.env.PORT || 3000)
@@ -11,7 +12,7 @@ function up(hostname,
   var postData = querystring.stringify({
     'url' : `${prefix}${os.hostname().toString()}:${advertisePort.toString()}`
       .replace(/:80$|:443$/,''),
-    'online': true
+    'name': name
   });
 
   var options = {
