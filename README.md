@@ -17,3 +17,9 @@ On process exit post a message that the server is now offline.
 When recieving a post message it will add the location of the project to a page for other users to find.
 When recieiving an offline annoincement it will indicate that state in some way.
 Could potentially listen to the closing of the http connection for the announced service for this. 
+
+
+### Development
+
+As the module `project-discovery-announce` is unpublish, use npm link to add it for the server to run.
+npm link will not work in folders mapped over the network.
