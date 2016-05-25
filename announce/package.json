@@ -1,0 +1,12 @@
+{
+  "name": "project-discovery-announce",
+  "version": "0.1.0",
+  "description": "Announce the state of an in-progress project to share.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Jack Bennett <npm@jackben.net>",
+  "license": "ISC"
+}

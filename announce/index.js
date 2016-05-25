@@ -1,12 +1,16 @@
 const http = require('http')
+const querystring = require('querystring');
 const os = require('os')
 
-var exports = {}
+function up(status){
+  var postData = querystring.stringify({
+    'url' : os.hostname().toString() + ':' + 3000,
+    'online': status
+  });
 
-var notify = function(status){
   var options = {
-    hostname: 'internal.birkdalehigh.club',
-    port: 80,
+    hostname: 'itspc02',
+    port: 3000,
     path: '/announce',
     method: 'POST',
     headers: {
@@ -14,11 +18,6 @@ var notify = function(status){
       'Content-Length': postData.length
     }
   };
-
-  var postData = querystring.stringify({
-    'url' : os.hostname().toString() + 3000,
-    'online': status
-  });
 
   var req = http.request(options, (res) => {
     console.log(`STATUS: ${res.statusCode}`);
@@ -41,7 +40,6 @@ var notify = function(status){
   req.end();
 }
 
-exports.announce = notify(true)
-exports.close = notify(false)
+function down(){}
 
-module.exports = exports
+module.exports = {announce, close}
