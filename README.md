@@ -1,5 +1,7 @@
 # Project Discover
 
+1. List the url and name to announced projects.
+1. Socket.IO Keeps the list up to date in real time.
 
 ## Status
 
@@ -21,5 +23,8 @@ Could potentially listen to the closing of the http connection for the announced
 
 ### Development
 
-As the module `project-discovery-announce` is unpublish, use npm link to add it for the server to run.
+As the module `project-discovery-announce` is unpublished, use npm link to add it for the server to run.
 npm link will not work in folders mapped over the network.
+
+- Only append unique URL's to the page
+- Recieve a project down message
