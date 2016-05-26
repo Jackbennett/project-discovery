@@ -8,10 +8,10 @@ function up(hostname,
 
   // Create the address of the project to advertise
   var advertisePort = parseInt(process.env.PORT || 3000)
-  var prefix = advertisePort === 443 ? 'https://' : 'http://'
+  var prefix = advertisePort === 443 ? 'https' : 'http'
   var postData = querystring.stringify({
-    'url' : `${prefix}${os.hostname().toString()}:${advertisePort.toString()}`
-      .replace(/:80$|:443$/,''),
+    'url' : `${prefix}://${os.hostname()}:${advertisePort}`
+      .replace(/:80$|:443$/,'/'),
     'name': name
   });
 
