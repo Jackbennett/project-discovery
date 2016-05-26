@@ -1,0 +1,23 @@
+{
+  "name": "project-discovery",
+  "version": "0.2.0",
+  "description": "Host a page to display the announced projects for other users to find and view.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "handlebars": "^4.0.5",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["share","find"],
+  "author": "Jack Bennett <npm@jackben.net>",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Jackbennett/project-discovery.git"
+  },
+  "license": "ISC"
+}

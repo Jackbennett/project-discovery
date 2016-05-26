@@ -1,0 +1,16 @@
+{
+  "name": "project-discovery-announce",
+  "version": "0.2.0",
+  "description": "Announce the state of an in-progress project to share for humans.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["post","announce","share"],
+  "author": "Jack Bennett <npm@jackben.net>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jackbennett/project-discovery.git"
+  },
+  "license": "ISC"
+}
