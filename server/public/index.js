@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost')
+var socket = io.connect(document.location.origin)
 var projects = document.querySelector('#projects')
 
 var source = '\t<h2>{{name}}</h2>\n' +
