@@ -1,8 +1,10 @@
 var socket = io.connect(document.location.origin)
 var projects = document.querySelector('#projects')
 
-var source = '\t<a href="{{url}}" target="_blank"><h2>{{name}}</h2>\n' +
-    '\t<p>{{url}}</p></a>\n'
+var source = '<div class="status"></div>\n' +
+    '\t<a href="{{url}}" target="_blank">\n' +
+      '\t<h2>{{name}}</h2>\n' +
+      '\t<p>{{url}}</p></a>\n'
 var template = Handlebars.compile(source)
 function addProject(url,name){
   var a = document.createElement('article')

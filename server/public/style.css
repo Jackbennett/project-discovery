@@ -1,0 +1,58 @@
+body{
+  font: 16px 'segoe UI', sans-serif;
+  color: #655643;
+  background: #F6F7BD;
+}
+
+h1{
+  margin: -2vw 0 0;
+  font-size: 8.3vw;
+  font-weight: 400;
+  font-family: 'Monoton', cursive;
+  text-align: center;
+  color: #E6AC27;
+}
+
+article{
+  padding: 4em 2em;
+  display: inline-block;
+  text-align: center;
+  background: #f8f8f8;
+  border-radius: 10px;
+}
+  article .status{
+    width: 70px;
+    height: 70px;
+    margin-bottom: 2em;
+    display: inline-block;
+    border-radius: 50%;
+    background: #BF4D28;
+    -webkit-transition: background .1s linear .25s, -webkit-transform 1s;
+    transition: background .1s linear .25s, -webkit-transform 1s;
+    transition: transform 1s, background .1s linear .25s;
+    transition: transform 1s, background .1s linear .25s, -webkit-transform 1s;
+  }
+  article .status.on{
+    background: #80BCA3;
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+  article h2{
+    margin-bottom: 0;
+  }
+  article p:first-of-type{
+    margin-top:.25em;
+  }
+
+a{
+  color: #540045;
+  text-decoration: none;
+}
+
+/*
+black: #655643
+green: #80BCA3
+cream: #F6F7BD
+orange: #E6AC27
+red: #BF4D28
+*/
