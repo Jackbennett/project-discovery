@@ -21,6 +21,7 @@ app.post('/announce', function(req,res){
   console.log(`Project announced from: ${req.body.url}`)
   console.log(req.body)
   projects.push(req.body)
+  io.emit('new', req.body)
 })
 
 io.on('connection', con =>{
@@ -30,6 +31,7 @@ io.on('connection', con =>{
 })
 
 io.on('disconnect', con =>{
+  io.emit('down', { id: con.id, up: false})
   console.log('client disconnect')
 })
 

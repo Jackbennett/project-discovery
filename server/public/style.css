@@ -1,4 +1,6 @@
 body{
+  margin:0;
+  padding:0;
   font: 16px 'segoe UI', sans-serif;
   color: #655643;
   background: #F6F7BD;
@@ -14,11 +16,14 @@ h1{
 }
 
 article{
+  margin-top: 1em;
+  margin-left: 1em;
   padding: 4em 2em;
   display: inline-block;
   text-align: center;
   background: #f8f8f8;
   border-radius: 10px;
+  box-shadow: 2px 5px 15px #655643;
 }
   article .status{
     width: 70px;
@@ -44,7 +49,7 @@ article{
     margin-top:.25em;
   }
 
-a{
+a,a:visited{
   color: #540045;
   text-decoration: none;
 }
