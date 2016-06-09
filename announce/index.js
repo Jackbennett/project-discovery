@@ -7,7 +7,7 @@ function up(hostname,
             name = os.hostname()){
 
   // Create the address of the project to advertise
-  var advertisePort = parseInt(process.env.PORT || 3000)
+  var advertisePort = parseInt(process.env.PORT || http.address().port || 3000)
   var prefix = advertisePort === 443 ? 'https' : 'http'
   var postData = querystring.stringify({
     'url' : `${prefix}://${os.hostname()}:${advertisePort}`
