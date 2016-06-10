@@ -37,5 +37,5 @@ io.on('disconnect', con =>{
 
 http.listen(port, function(){
   console.log(`Listening on ${os.hostname()}:${port}`)
-  announce.up(os.hostname(), port, 'Discovery Server')
+  announce.up({name: 'Discovery Server'},{})
 })
