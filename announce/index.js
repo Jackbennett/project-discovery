@@ -1,30 +1,46 @@
 const http = require('http')
 const querystring = require('querystring');
+const url = require('url')
 const os = require('os')
+const _ = require('lodash')
 
-function up(hostname,
-            port = 80,
-            name = os.hostname()){
+function up(from = {}, to = {}) {
 
-  // Create the address of the project to advertise
-  var advertisePort = parseInt(process.env.PORT || http.address().port || 3000)
-  var prefix = advertisePort === 443 ? 'https' : 'http'
-  var postData = querystring.stringify({
-    'url' : `${prefix}://${os.hostname()}:${advertisePort}`
-      .replace(/:80$|:443$/,'/'),
-    'name': name
-  });
+  if (http.address()) {
+    var port = http.address().port
+  }
+
+  _.defaults(from, {
+    port: parseInt(port || process.env.PORT || 3000)
+    , url: guessUrl()
+    , name: os.hostname()
+  })
+
+  _.defaults(to, getAPI())
+
+  function guessUrl() {
+    // Create the address of the project to advertise
+    var prefix = from.port === 443 ? 'https' : 'http'
+    return `${prefix}://${os.hostname()}:${from.port}`.replace(/:80$|:443$/, '/')
+  }
+
+  function getAPI() {
+    return url.parse(process.env.NODE_ORG_API || `http://${os.hostname()}`)
+  }
+
+  var postData = querystring.stringify(from)
 
   var options = {
-    path: '/announce',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Length': postData.length
+    path: '/announce'
+    , method: 'POST'
+    , headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+      , 'Content-Length': postData.length
     }
   }
-  options.hostname = hostname
-  options.port = port
+  _.defaults(options, to)
+
+  console.log(options)
 
   var req = http.request(options, (res) => {
     console.log(`STATUS: ${res.statusCode}`);
@@ -49,6 +65,8 @@ function up(hostname,
   req.end();
 }
 
-function down(){}
+function down() {}
 
-module.exports = {up, down}
+module.exports = {
+  up, down
+}

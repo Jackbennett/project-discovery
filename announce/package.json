@@ -6,11 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["post","announce","share"],
+  "keywords": [
+    "post",
+    "announce",
+    "share"
+  ],
   "author": "Jack Bennett <npm@jackben.net>",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jackbennett/project-discovery.git"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.13.1"
+  }
 }
