@@ -4,7 +4,9 @@ const url = require('url')
 const os = require('os')
 const _ = require('lodash')
 
-function up(from = {}, to = {}) {
+function up(from, to) {
+
+  var to = to || `http://${os.hostname()}`
 
   if (http.address) {
     var port = http.address().port
@@ -25,7 +27,7 @@ function up(from = {}, to = {}) {
   }
 
   function getAPI() {
-    return url.parse(process.env.NODE_ORG_API || `http://${os.hostname()}`)
+    return url.parse(to || process.env.NODE_ORG_API)
   }
 
   var postData = querystring.stringify(from)
