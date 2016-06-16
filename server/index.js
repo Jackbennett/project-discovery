@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 
 var projects = []
 
-app.post('/announce', function(req,res){
+app.post('/announce', function (req, res) {
   if (!req.body) return res.sendStatus(400)
   console.log(`Project announced from: ${req.body.url}`)
   console.log(req.body)
@@ -24,18 +24,29 @@ app.post('/announce', function(req,res){
   io.emit('new', req.body)
 })
 
-io.on('connection', con =>{
+app.put('/announce', function (req, res) {
+  if (!req.body) return res.sendStatus(400)
+  console.log(`Project down from: ${req.body.url}`)
+  console.log(req.body.method)
+  io.emit('down', {
+    id: con.id,
+    up: false
+  })
+})
+
+io.on('connection', con => {
   io.to(con.id).emit('list projects', projects)
 
   console.log(con.id)
 })
 
-io.on('disconnect', con =>{
-  io.emit('down', { id: con.id, up: false})
+io.on('disconnect', con => {
   console.log('client disconnect')
 })
 
-http.listen(port, function(){
+http.listen(port, function () {
   console.log(`Listening on ${os.hostname()}:${port}`)
-  announce.up({name: 'Discovery Server'},{})
+  announce.up({
+    name: 'Discovery Server'
+  })
 })
