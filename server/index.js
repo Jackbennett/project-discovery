@@ -26,10 +26,9 @@ app.post('/announce', function (req, res) {
 
 app.put('/announce', function (req, res) {
   if (!req.body) return res.sendStatus(400)
-  console.log(`Project down from: ${req.body.url}`)
-  console.log(req.body.method)
+  console.log(`server: Project down from: ${req.body.url}`)
   io.emit('down', {
-    id: con.id,
+    id: 'testID',
     up: false
   })
 })
