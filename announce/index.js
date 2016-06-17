@@ -6,11 +6,12 @@ const _ = require('lodash')
 
 var currentProject
 
+
 function up(from, to) {
   var port = parseInt(process.env.PORT || 3000)
   _.defaults(from, {
     port: port,
-    url: guessUrl(port),
+    url: guessUrl(from.port || port),
     name: os.hostname()
   })
 
