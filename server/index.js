@@ -15,12 +15,32 @@ app.use(bodyParser.urlencoded({
 
 var projects = []
 
+function parseService(data){
+  if(!data.url){
+    data.url = `http://${data.hostname}:${data.port}/`
+  }
+
+  if(!data.title){
+    data.title = data.hostname
+  }
+
+  var service = {
+    url: data.url
+    , hostname: data.hostname
+    , state: true
+    , title: data.title
+  }
+  return service
+}
+
 app.post('/announce', function (req, res) {
   if (!req.body) return res.sendStatus(400)
   console.log(`Project announced from: ${req.body.url}`)
-  console.log(req.body)
-  projects.push(req.body)
-  io.emit('new', req.body)
+
+  var project = parseService(req.body)
+  console.log(project)
+  projects.push(project)
+  io.emit('new', project)
 })
 
 app.put('/announce', function (req, res) {

@@ -4,7 +4,7 @@ var projectUI = {
   template: function () {
     var source = '<div class="status {{state}}"></div>\n' +
       '\t<a href="{{url}}" target="_blank">\n' +
-      '\t<h2>{{name}}</h2>\n' +
+      '\t<h2>{{title}}</h2>\n' +
       '\t<p>{{url}}</p></a>\n'
     return Handlebars.compile(source)
   }(),
