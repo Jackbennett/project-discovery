@@ -3,7 +3,6 @@ var app = express()
 
 const bodyParser = require('body-parser')
 const os = require('os')
-const announce = require('project-discovery-announce')
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 
@@ -42,7 +41,4 @@ io.on('disconnect', con => {
 
 http.listen(port, function () {
   console.log(`Listening on ${os.hostname()}:${port}`)
-  announce.up({
-    name: 'Discovery Server'
-  })
 })

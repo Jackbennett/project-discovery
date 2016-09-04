@@ -4,14 +4,15 @@
   "description": "Host a page to display the announced projects for other users to find and view.",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.15.1",
-    "express": "^4.13.4",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
     "handlebars": "^4.0.5",
     "project-discovery-announce": "^0.2.0",
-    "socket.io": "^1.4.6"
+    "socket.io": "^1.4.8"
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
