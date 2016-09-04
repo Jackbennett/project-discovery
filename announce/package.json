@@ -1,6 +1,6 @@
 {
   "name": "project-discovery-announce",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Announce the state of an in-progress project to share for humans.",
   "main": "index.js",
   "scripts": {
