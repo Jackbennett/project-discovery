@@ -6,6 +6,7 @@ const _ = require('lodash')
 
 module.exports = function(target){
   var module = {}
+  var project = {}
   
   if(!target){
     throw 'Missing target server for announcement'
@@ -13,7 +14,8 @@ module.exports = function(target){
 
   var server = url.parse(target)
 
-  var request = function(method, data, exit) {
+  var request = function(method, data, cb) {
+    var cb = cb || function(){}
     console.log(`HTTP: ${method}`)
     var postData = querystring.stringify(data)
 
@@ -46,19 +48,26 @@ module.exports = function(target){
 
     req.on('error', (e) => {
       console.log(`problem with request: ${e.message}`)
+      cb()
     });
     req.setTimeout(500)
 
-    req.write(postData);
+    req.write(postData)
 
-    req.end(() => {
-      if (exit) process.exit()
-    });
+    req.end(function(){ cb() });
+  }
+
+  var exitHandler = function(options, err) {
+    process.stdin.resume(); //so the program will not close instantly
+    console.log('exit type: ' + options.type)
+
+    request('put', project, process.exit)
   }
 
   module.up = function(from){
     var port = parseInt(process.env.PORT || 3000)
-    var project = _.defaults(from, {
+    
+    project = _.defaults(from, {
       port: port,
       hostname: os.hostname()
     })
@@ -66,5 +75,20 @@ module.exports = function(target){
     request('post', project)
   }
 
+  //do something when app is closing
+  process.on('exit', exitHandler.bind(null, {
+    type: 'cleanup'
+  }));
+  //catches ctrl+c event
+  process.on('SIGINT', exitHandler.bind(null, {
+    type: 'sigint'
+  }));
+  //catches uncaught exceptions
+  process.on('uncaughtException', exitHandler.bind(null, {
+    type: 'uncaughtException'
+  }));
+
   return module
 }
+
+
