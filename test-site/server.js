@@ -13,5 +13,5 @@ var server = http.createServer((req, res) => {
 
 server.listen(port, hostname, () => {
     console.log(`${hostname}:${port} ready.`)
-    announce.up({'title': 'Test Site A', 'hostname': hostname, 'port': port})
+    announce.up({'title': 'Test Site A', 'hostname': hostname, 'port': port, 'url': 'anExampleURL'})
 })

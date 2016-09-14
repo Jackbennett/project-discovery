@@ -1,6 +1,6 @@
 {
   "name": "project-discovery",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Host a page to display the announced projects for other users to find and view.",
   "main": "index.js",
   "dependencies": {

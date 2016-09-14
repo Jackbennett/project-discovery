@@ -9,21 +9,19 @@ var projectUI = {
     return Handlebars.compile(source)
   }(),
   list: [],
-  add: function (url, name, state) {
-    state = state ? 'on' : 'off'
-    this.list.push({
-      url: url,
-      name: name,
-      state: state
+  update: function (url, name, state) {
+    var update = this.list.find(function (project) {
+      return project.url === url
     })
-    this.paint()
-  },
-  update: function (url, state) {
-    this.list.forEach(function (d, i) {
-      if (d.url === url) {
-        d.state = state ? "on" : "off"
-      }
-    })
+    if(update){
+      update.state = state ? "on" : "off"
+    } else {
+      this.list.push({
+        url: url,
+        name: name,
+        state: state
+      })
+    }
     this.paint()
   },
   remove: function (p) {
@@ -52,18 +50,19 @@ var projectUI = {
 
 socket.on('list projects', function (list) {
   list.forEach(function (project) {
-    projectUI.add(project.url, project.name, true)
+    projectUI.update(project.url, project.name, true)
   })
   projectUI.paint()
 })
 
 socket.on('new', function (project) {
   console.log('new project')
-  projectUI.add(project.url, project.name, true)
+  console.log(project)
+  projectUI.update(project.url, project.name, true)
 })
 
 socket.on('down', function (project) {
   console.log('project offline')
   console.log(project)
-  projectUI.update(project.url, false)
+  projectUI.update(project.url, project.name, false)
 })

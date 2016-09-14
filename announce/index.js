@@ -59,9 +59,11 @@ module.exports = function(target){
 
   var exitHandler = function(options, err) {
     process.stdin.resume(); //so the program will not close instantly
-    console.log('exit type: ' + options.type)
+    if(project.state){
+      project.state = false
+      request('put', project, process.exit)
+    }
 
-    request('put', project, process.exit)
   }
 
   module.up = function(from){
@@ -69,9 +71,9 @@ module.exports = function(target){
     
     project = _.defaults(from, {
       port: port,
-      hostname: os.hostname()
+      hostname: os.hostname(),
+      state: true
     })
-
     request('post', project)
   }
 
