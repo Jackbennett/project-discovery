@@ -19,7 +19,7 @@ var projectUI = {
       this.list.push({
         url: url,
         name: name,
-        state: state
+        state: state ? "on" : "off"
       })
     }
     this.paint()
@@ -52,7 +52,6 @@ socket.on('list projects', function (list) {
   list.forEach(function (project) {
     projectUI.update(project.url, project.name, true)
   })
-  projectUI.paint()
 })
 
 socket.on('new', function (project) {
