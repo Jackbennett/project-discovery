@@ -3,6 +3,7 @@
   "version": "0.3.1",
   "description": "Host a page to display the announced projects for other users to find and view.",
   "main": "index.js",
+  "engines" : { "node" : ">=6.0.0" },
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
