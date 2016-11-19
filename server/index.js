@@ -23,14 +23,17 @@ function parseService(data){
   if(!data.title){
     data.title = data.hostname
   }
-  if(data.state === "false"){
+
+  if(data.state === "false" || data.state === false){
     data.state = false
+  } else {
+    data.state = true
   }
 
   var service = {
     url: data.url
     , hostname: data.hostname
-    , state: data.state ? true : false
+    , state: data.state
     , title: data.title
   }
   return service
@@ -38,17 +41,14 @@ function parseService(data){
 
 app.post('/announce', function (req, res) {
   if (!req.body) return res.sendStatus(400)
-  console.log(`Project announced from: ${req.body.url}`)
 
   var project = parseService(req.body)
-  console.log(project)
   projects.push(project)
   io.emit('new', project)
 })
 
 app.put('/announce', function (req, res) {
   if (!req.body) return res.sendStatus(400)
-  console.log(`server: Project down from: ${req.body.url}`)
   var project = parseService(req.body)
 
   projects.forEach((existing, index) => {
@@ -63,11 +63,11 @@ app.put('/announce', function (req, res) {
 io.on('connection', con => {
   io.to(con.id).emit('allProjects', projects)
 
-  console.log(con.id)
+  console.log(`${con.id} Connected`)
 })
 
 io.on('disconnect', con => {
-  console.log('client disconnect')
+  console.log(`${con.id} Disconnect`)
 })
 
 http.listen(port, function () {
