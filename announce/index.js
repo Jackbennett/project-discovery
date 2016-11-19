@@ -16,7 +16,6 @@ module.exports = function(target){
 
   var request = function(method, data, cb) {
     var cb = cb || function(){}
-    console.log(`HTTP: ${method}`)
     var postData = querystring.stringify(data)
 
     var options = {
@@ -30,26 +29,16 @@ module.exports = function(target){
       }
     }
 
-    console.log(data)
-
     var req = http.request(options, (res) => {
-      console.log(`STATUS: ${res.statusCode}`)
-      console.log(`HEADERS: ${JSON.stringify(res.headers)}`)
       res.setEncoding('utf8')
-
-      res.on('data', (chunk) => {
-        console.log(`BODY: ${chunk}`)
-      });
-
-      res.on('end', () => {
-        console.log('No more data in response.')
-      })
     });
 
     req.on('error', (e) => {
       console.log(`problem with request: ${e.message}`)
       cb()
     });
+
+    // we don't care to get a response at all but short to timeout to lessen hanging at exit
     req.setTimeout(500)
 
     req.write(postData)
@@ -59,11 +48,8 @@ module.exports = function(target){
 
   var exitHandler = function(options, err) {
     process.stdin.resume(); //so the program will not close instantly
-    if(project.state){
-      project.state = false
-      request('put', project, process.exit)
-    }
-
+    project.state = false
+    request('put', project, process.exit)
   }
 
   module.up = function(from){
@@ -72,8 +58,8 @@ module.exports = function(target){
     project = _.defaults(from, {
       port: port,
       hostname: os.hostname(),
-      state: true
     })
+    project.state = true
     request('post', project)
   }
 
@@ -92,5 +78,3 @@ module.exports = function(target){
 
   return module
 }
-
-
