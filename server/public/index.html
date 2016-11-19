@@ -6,13 +6,20 @@
   <link href='https://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/style.css">
   <script src="/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
   <h1>Project Discovery</h1>
   
-  <section id="projects"></section>
+  <section id="app">
+    <article v-for="project in list">
+      <div class="status" v-bind:class="{online: project.state}"></div>
+      <a v-bind:href="project.url" target="_blank">
+      <h2>{{project.title}}</h2>
+      <p>{{project.url}}</p></a>
+    </article>
+  </section>
   
-<script src="/js/handlebars.min.js"></script>
 <script src="/index.js"></script>
 </body>
 </html>

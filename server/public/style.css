@@ -32,12 +32,9 @@ article{
     display: inline-block;
     border-radius: 50%;
     background: #BF4D28;
-    -webkit-transition: background .1s linear .25s, -webkit-transform 1s;
-    transition: background .1s linear .25s, -webkit-transform 1s;
-    transition: transform 1s, background .1s linear .25s;
-    transition: transform 1s, background .1s linear .25s, -webkit-transform 1s;
+    transition: transform .3s, background .1s linear .1s;
   }
-  article .status.on{
+  article .status.online{
     background: #80BCA3;
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);

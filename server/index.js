@@ -50,7 +50,7 @@ app.put('/announce', function (req, res) {
 })
 
 io.on('connection', con => {
-  io.to(con.id).emit('list projects', projects)
+  io.to(con.id).emit('allProjects', projects)
 
   console.log(con.id)
 })
