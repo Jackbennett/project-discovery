@@ -23,11 +23,14 @@ function parseService(data){
   if(!data.title){
     data.title = data.hostname
   }
+  if(data.state === "false"){
+    data.state = false
+  }
 
   var service = {
     url: data.url
     , hostname: data.hostname
-    , state: true
+    , state: data.state ? true : false
     , title: data.title
   }
   return service
@@ -46,7 +49,15 @@ app.post('/announce', function (req, res) {
 app.put('/announce', function (req, res) {
   if (!req.body) return res.sendStatus(400)
   console.log(`server: Project down from: ${req.body.url}`)
-  io.emit('down', req.body)
+  var project = parseService(req.body)
+
+  projects.forEach((existing, index) => {
+    if(existing.url.toLowerCase() === project.url.toLowerCase()){
+      projects[index] = project
+    }
+  })
+
+  io.emit('down', project)
 })
 
 io.on('connection', con => {
