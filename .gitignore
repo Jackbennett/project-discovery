@@ -1,6 +1,9 @@
+Thumbs.db
+
 node_modules/*
 */node_modules/*
 .nyc_output/*
 */.nyc_output/*
 
 Thumbs.db
+.DS_Store
