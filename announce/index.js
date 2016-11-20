@@ -7,12 +7,15 @@ const _ = require('lodash')
 module.exports = function(target){
   var module = {}
   var project = {}
-  
+
   if(!target){
-    throw 'Missing target server for announcement'
+    throw new Error('Missing target server for announcement')
   }
 
   var server = url.parse(target)
+  if( ! server.protocol.match(/https?:/i) ){
+    throw new Error('URL to endpoint looks malformed')
+  }
 
   var request = function(method, data, cb) {
     var cb = cb || function(){}
@@ -61,6 +64,7 @@ module.exports = function(target){
     })
     project.state = true
     request('post', project)
+    return project
   }
 
   //do something when app is closing

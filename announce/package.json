@@ -4,7 +4,7 @@
   "description": "Announce the state of an in-progress project to share for humans.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tap test/*.js"
   },
   "keywords": [
     "post",
@@ -17,8 +17,14 @@
     "url": "https://github.com/Jackbennett/project-discovery.git"
   },
   "license": "ISC",
-  "engines" : { "node" : ">=6.0.0" },
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "dependencies": {
     "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "rewire": "^2.5.2",
+    "tap": "^8.0.1"
   }
 }
