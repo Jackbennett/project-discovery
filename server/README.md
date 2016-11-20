@@ -1,15 +1,33 @@
 # Project Discovery Server
 
-Hosts the page to view the announce projects for humans to discover. Eventually I hopet his to be a cli tool users can quickly run for their class.
+Hosts a page to view announced projects for humans to discover.
+This is used in a school to get students viewing and share each others programming work to keep lessons exciting. It can show all the projects that have been going on and indicates when they're online for viewing.
 
 ## How To Use
 
-1. clone/download/copy the code to a folder
-1. navigate to ...`project-discovery/server` and run npm install
-1. got to [http://localhost:3000/](http://localhost:3000/)
+1. Clone/download/copy the code to a folder
+1. Navigate to that folder `project-discovery/server` and run npm install
+1. run `npm run start`
+1. Go to [http://localhost:3000/](http://localhost:3000/)
 
 You should find this server itself announced as the first project
 
-## Known Issues
+## To install
+From the above you now know how to start the server. There's extra steps an administrator can do to their network that makes this module work a lot smoother for students.
 
-- The console logs "problem with request: Parse Error": This needs catching, the port your are trying to use is taken. *(looking at you skype)*
+Create a GPO to prepare the environment for hosting a server. The announce module will pick up environment settings which means you can avoid students having to get details correct.
+Property Name| Description
+-|-
+PORT | TCP port number allowing inbound traffic through the client firewall
+API | Url of the server this will be running the server component projects should advertise too.
+
+### firewall
+Allow the port you set the environment variable for inbound TCP traffic, you might want to restrict it to the specific process node.exe. Do not set secure only.
+
+### Example config
+Exported GPO of the above.
+```
+
+```
+
+## Known Issues
