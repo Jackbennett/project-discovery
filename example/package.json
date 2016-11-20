@@ -1,0 +1,21 @@
+{
+  "name": "project-discovery-example",
+  "private": true,
+  "version": "0.3.1",
+  "description": "Example server that announces itself to the server for listing.",
+  "main": "server.js",
+  "engines" : { "node" : ">=6.0.0" },
+  "dependencies": {
+    "project-discovery-announce": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Jack Bennett <npm@jackben.net>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jackbennett/project-discovery.git"
+  },
+  "license": "ISC"
+}

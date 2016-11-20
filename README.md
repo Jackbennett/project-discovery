@@ -1,7 +1,15 @@
-# Project Discover
+![Project Logo](https://raw.githubusercontent.com/jackbennett/project-discovery/master/logo.png)
 
-1. List the url and name to announced projects.
-1. Socket.IO Keeps the list up to date in real time.
+# Project Discovery
+
+Say you've got a room of people learning the web. Wouldn't it be great of they could easily view each others work to talk about it and share ideas?
+
+Well, Give them a template that use this announce module as their own server.
+There's an [example](example/) in this github.
+Read the [announce](announce/) document for how this works.
+You'll need a copy of the [server](server/) running somewhere, it works best as your classroom PC and looks great on the board.
+
+![Screenshot](https://raw.githubusercontent.com/jackbennett/project-discovery/master/screenshot.png)
 
 ## Status
 
@@ -15,9 +23,9 @@ Very much a work in progress to learn;
 Post the computer name and url:port that allows access to the service to advertise. Possible maintain a connection.
 On process exit post a message that the server is now offline.
 
-`server/` is the code to recive the state message and present a UI to view the running projects.
-When recieving a post message it will add the location of the project to a page for other users to find.
-When recieiving an offline annoincement it will indicate that state in some way.
+`server/` is the code to receive the state message and present a UI to view the running projects.
+When receiving a post message it will add the location of the project to a page for other users to find.
+When receiving an offline announcement it will indicate that state in some way.
 Could potentially listen to the closing of the http connection for the announced service for this. 
 
 ### Development
@@ -26,4 +34,4 @@ As the module `project-discovery-announce` is unpublished, use npm link to add i
 npm link will not work in folders mapped over the network.
 
 - Only append unique URL's to the page
-- Recieve a project down message
+- Receive a project down message
