@@ -11,27 +11,35 @@ You'll need a copy of the [server](server/) running somewhere, it works best as 
 
 ![Screenshot](https://raw.githubusercontent.com/jackbennett/project-discovery/master/screenshot.png)
 
-## Status
+## Files
 
-Very much a work in progress to learn;
-
-- How to make a module
-
-## Plan
-
-`announce/` will contain the module code required for sub-projects to pull in and declare their state with.
-Post the computer name and url:port that allows access to the service to advertise. Possible maintain a connection.
+### [`announce/`](announce/)
+Publish NPM Module "project-discovery-announce" needs to be required by projects that want to announce themselves to the server to be found.
 On process exit post a message that the server is now offline.
 
-`server/` is the code to receive the state message and present a UI to view the running projects.
-When receiving a post message it will add the location of the project to a page for other users to find.
-When receiving an offline announcement it will indicate that state in some way.
-Could potentially listen to the closing of the http connection for the announced service for this. 
+### [`server/`](server/)
+The page that's hosted to list projects as they get announced on the network. Until this handles multiple rooms you might want to run an instance per room.
 
-### Development
+### [`example/`](example/)
+Once the server is running you could rn this example of a webserver that announces itself to the page. Run and kill this to see how the page updates. See that you can change the title each run.
 
-As the module `project-discovery-announce` is unpublished, use npm link to add it for the server to run.
+## Teachers
+You'll need the network administrators approval of the below section. As for the students you will want to give them a starter template with this ready configure unless server code is what you want to start with. This works best as a follow on from a lesson on the command line. All students need is one command in the template folder `npm run start` and they can be away editing their website.
+
+## Administrators
+This is initially designed to be used in a school per classroom as a way to make a classroom activity more interactive. Network administrators can get this set up with some minor addition to the computer policy, they you'll have to give out a small set of files as starter template for each students project.
+
+You'll require node.js to be installed on the client PCs, console access (Powershell recommended), opened firewall ports and thats it. See the [server](server/) readme for clearer instructions.
+
+## Development
+
+Clone this repo and use npm link to add it to your own test project. You could copy the example and remove the package.json dependency on the published version.
 npm link will not work in folders mapped over the network.
 
-- Only append unique URL's to the page
-- Receive a project down message
+The server considers each project to be unique by URL.
+
+### Todos
+- Only allow clients to announce projects at urls belonging to their hostname
+- Pick more option up from the configurations in the network domain.
+- Remove stale projects after a time
+- Some way to specify what room you want to list projects from.
