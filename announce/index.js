@@ -56,8 +56,8 @@ module.exports = function(target){
   }
 
   module.up = function(from){
-    var port = parseInt(process.env.PORT || 3000)
-    
+    var port = parseInt(process.env.PORT || process.env.NODE_PORT || 3000)
+
     project = _.defaults(from, {
       port: port,
       hostname: os.hostname(),
