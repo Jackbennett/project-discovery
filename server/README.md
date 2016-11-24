@@ -30,9 +30,9 @@ Create a GPO for the computers or users you want to preset options for. Either `
 Available are;
 name | Description | Example
 -|-|-
-NODE_ORG_API | Set the url to a server that runs programmably accessible infromation | api.example.com
+NODE_ORG_API | Set the url to a server for the requests | api.example.com
 NODE_PORT | Number value a client computer can assume it should use | 8080
 
-Our domain has a firewall exclusion for inbound and outbound traffic to 8000-8100 for the `node.exe` proccess on all classroom PC's. This allows students some flexibility for running and sharing mulitple projects.
+Our domain has a firewall exclusion for inbound and outbound traffic to 8000-8100 for the `node.exe` process on all classroom PC's. This allows students some flexibility for running and sharing multiple projects.
 
 ## Known Issues
