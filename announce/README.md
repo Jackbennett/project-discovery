@@ -25,9 +25,10 @@ server.listen(port, hostname, () => {
 
 # Methods
 ## up([options])
-function can accept an object to customize the project title and url that is advertised. If no options are set these will be guessed
+Function can accept an object to customize the project title and url that is advertised. If no options are set these will be guessed
 
-available options are;
+Available options are;
+
 name | type | default| description
 -----|------|--------| -----------
 title | string | Formatted URL value | What title to display on the page
